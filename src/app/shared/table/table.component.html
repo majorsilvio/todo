@@ -1,0 +1,26 @@
+<div id="table-header">
+    <div class="head-cell" *ngFor="let item of headCells">
+        {{item}}
+    </div>
+</div>
+<div id="table-body">
+    <div class="table-body-row" *ngFor="let item of viwerData">
+        <div *ngFor="let cell of headCells" class="table-body-row-cell">
+            <div *ngIf="cell.toLowerCase() !== 'actions' else actions">
+                {{item[cell]}}
+            </div>
+            <ng-template #actions>
+                <span class="material-icons" (click)="emitExcluir(item[identifier])">delete</span>
+                <span class="material-icons" (click)="emitEditar(item[identifier])">edit</span>
+            </ng-template>
+
+        </div>
+    </div>
+</div>
+<div class="table-paginate">
+    <ul>
+        <li (click)="preview()">preview</li>
+        <span>{{page}} / {{maxPage}}</span>
+        <li (click)="next()">next</li>
+    </ul>
+</div>

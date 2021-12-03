@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 55px;
+    min-height: 20px;
+    background-color: rgb(8, 8, 8);
+    padding: 3px 5px;
+    cursor: pointer;
+    font-size: 50%;
+    user-select: none;
+}
