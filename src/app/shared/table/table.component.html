@@ -1,26 +1,31 @@
-<div id="table-header">
-    <div class="head-cell" *ngFor="let item of headCells">
-        {{item}}
-    </div>
-</div>
-<div id="table-body">
-    <div class="table-body-row" *ngFor="let item of viwerData">
-        <div *ngFor="let cell of headCells" class="table-body-row-cell">
-            <div *ngIf="cell.toLowerCase() !== 'actions' else actions">
-                {{item[cell]}}
-            </div>
-            <ng-template #actions>
-                <span class="material-icons" (click)="emitExcluir(item[identifier])">delete</span>
-                <span class="material-icons" (click)="emitEditar(item[identifier])">edit</span>
-            </ng-template>
-
-        </div>
-    </div>
-</div>
-<div class="table-paginate">
-    <ul>
-        <li (click)="preview()">preview</li>
-        <span>{{page}} / {{maxPage}}</span>
-        <li (click)="next()">next</li>
-    </ul>
-</div>
+<table class="table">
+    <thead id="table-header">
+        <tr class="head-cell-row">
+            <th class="head-cell" *ngFor="let item of headCells" >{{item}}</th>
+        </tr>
+    </thead>
+    <tbody id="table-body">
+        <tr class="table-body-row" *ngFor="let item of viwerData">
+            <ng-container *ngFor="let cell of headCells">
+                <td *ngIf="cell.toLowerCase() !== 'actions' else actions" class="table-body-row-cell">{{item[cell]}}</td>
+                <ng-template #actions>
+                    <td class="table-body-row-cell" colspan="2">
+                        <span class="material-icons" (click)="emitExcluir(item[identifier])">delete</span>
+                        <span class="material-icons" (click)="emitEditar(item[identifier])">edit</span>
+                    </td>
+                </ng-template>
+            </ng-container>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+          <th class="table-paginate">
+            <ul>
+                <li (click)="preview()">preview</li>
+                <span>{{page}} / {{maxPage}}</span>
+                <li (click)="next()">next</li>
+            </ul>
+          </th>
+        </tr>
+      </tfoot>
+</table>

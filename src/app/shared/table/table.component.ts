@@ -13,7 +13,7 @@ export class TableComponent implements OnInit {
   maxPage: any;
   total: number | undefined;
   constructor() { }
-  @Input() itemsPerPage = 5;
+  @Input() itemsPerPage = 10;
   @Input() headCells:Array<string> = [];
   @Input() data:any[] | undefined;
   @Input() identifier:any = -1;
@@ -34,7 +34,7 @@ export class TableComponent implements OnInit {
   setViwerData(){
     this.viwerData = this.data?.slice(this.initialItem,this.itemsPerPage * this.page);
     this.total = this.data?.length;
-    this.maxPage = this.total ?  Math.round(this.total / this.itemsPerPage) : 0;
+    this.maxPage = this.total ?  Math.ceil(this.total / this.itemsPerPage) : 0;
   }
 
 
