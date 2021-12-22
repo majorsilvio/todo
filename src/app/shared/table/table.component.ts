@@ -1,31 +1,33 @@
 import { HeadCell } from './../../models/head-cell.model';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, AfterViewChecked, AfterViewInit, AfterContentChecked, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements AfterContentChecked, OnDestroy{
 
   viwerData:any[] | undefined;
   page:number = 1;
   maxPage: any;
-  total: number | undefined;
+  total?: number;
   constructor() { }
   @Input() itemsPerPage = 10;
   @Input() headCells:Array<string> = [];
-  @Input() data:any[] | undefined;
-  @Input() identifier:any = -1;
+  @Input() data:any[] | undefined | null;
 
   @Output() onClickExcluir = new EventEmitter()
   @Output() onClickEditar = new EventEmitter()
 
-  ngOnInit(): void {
-    //type peageable
-    this.setViwerData();
-  } 
-  
+  ngAfterContentChecked(): void {
+    this.setViwerData();    
+  }
+
+  ngOnDestroy(): void {
+    this.data = undefined;
+    this.viwerData = undefined;
+  }
 
   get initialItem(){
     return (this.itemsPerPage * this.page) - this.itemsPerPage
@@ -34,7 +36,7 @@ export class TableComponent implements OnInit {
   setViwerData(){
     this.viwerData = this.data?.slice(this.initialItem,this.itemsPerPage * this.page);
     this.total = this.data?.length;
-    this.maxPage = this.total ?  Math.ceil(this.total / this.itemsPerPage) : 0;
+    this.maxPage = this.total ?  Math.ceil(this.total / this.itemsPerPage) : 1;
   }
 
 
@@ -57,7 +59,7 @@ export class TableComponent implements OnInit {
 
   
   emitEditar(identifier:any){
-    this.onClickExcluir.emit(identifier)
+    this.onClickEditar.emit(identifier)
   }
 
 }

@@ -7,11 +7,11 @@
     <tbody id="table-body">
         <tr class="table-body-row" *ngFor="let item of viwerData">
             <ng-container *ngFor="let cell of headCells">
-                <td *ngIf="cell.toLowerCase() !== 'actions' else actions" class="table-body-row-cell">{{item[cell]}}</td>
+                <td *ngIf="cell.toLowerCase() !== 'actions' else actions" class="table-body-row-cell" [status]="item.status">{{item[cell]}}</td>
                 <ng-template #actions>
                     <td class="table-body-row-cell" colspan="2">
-                        <span class="material-icons" (click)="emitExcluir(item[identifier])">delete</span>
-                        <span class="material-icons" (click)="emitEditar(item[identifier])">edit</span>
+                        <span class="material-icons" (click)="emitExcluir(item)">delete</span>
+                        <span class="material-icons" (click)="emitEditar(item)">edit</span>
                     </td>
                 </ng-template>
             </ng-container>

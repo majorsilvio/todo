@@ -1,1 +1,1 @@
-<app-table [headCells]="headCells" [data]="data" identifier="id" (onClickExcluir)="log($event)" (onClickEditar)="log($event)"></app-table>
+<app-table [headCells]="headCells" [data]="data$ | async" (onClickExcluir)="remove($event)" (onClickEditar)="editar($event)" ></app-table>

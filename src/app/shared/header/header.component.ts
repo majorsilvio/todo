@@ -10,6 +10,7 @@ export class HeaderComponent{
   private _title: any;
   @Output() novo = new EventEmitter();
   @Output() sair = new EventEmitter();
+  @Output() home = new EventEmitter();
 
   get title(): any {
       return this._title;
@@ -26,5 +27,9 @@ export class HeaderComponent{
    
   emitSair():any{
     this.sair.emit();
+  }
+
+  emitHome():any{
+    this.home.emit();
   }
 }

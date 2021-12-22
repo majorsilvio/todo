@@ -1,0 +1,15 @@
+<form [formGroup]="formGroup">
+    <mat-form-field class="formField" appearance="outline">
+        <mat-label>Title</mat-label>
+        <input type="text" matInput formControlName="title" placeholder="ToDo Title">
+    </mat-form-field>
+    <mat-form-field class="formField" appearance="outline">
+        <mat-label>Description</mat-label>
+        <input type="text" matInput formControlName="description" placeholder="ToDo Description">
+    </mat-form-field>
+    <mat-radio-group class="formField status" formControlName="status" aria-label="Select an option" *ngIf="isEdit">
+        <mat-radio-button color="primary" [value]="true">Finalizado</mat-radio-button>
+        <mat-radio-button color="primary" [value]="false">Pendente</mat-radio-button>
+      </mat-radio-group>
+    <app-button name="SALVAR" (onClick)="save()"></app-button>
+</form>

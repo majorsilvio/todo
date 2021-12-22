@@ -1,5 +1,5 @@
 <div class="toolbar">
-    <div class="logo">TSCM</div>
+    <div class="logo" (click)="emitHome()">TSCM</div>
     <div class="username">{{title}}</div>
     <div class="tool-actions">
         <app-button name="NOVO" (onClick)="emitNovo()"></app-button>

@@ -5,11 +5,13 @@ import { CommonModule } from '@angular/common';
 
 import { ToDoRoutingModule } from './to-do-routing.module';
 import { ToDoComponent } from './to-do.component';
+import { FormComponent } from './form/form.component';
 
 
 @NgModule({
   declarations: [
-    ToDoComponent
+    ToDoComponent,
+    FormComponent
   ],
   imports: [
     CommonModule,
